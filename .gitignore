@@ -1,0 +1,19 @@
+# Local Python environments and build outputs
+.tools/
+**/.venv/
+**/.pio/
+**/__pycache__/
+*.py[cod]
+**/.pytest_cache/
+**/.vscode/ipch/
+**/.vscode/c_cpp_properties.json
+# Runtime output and secrets
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+.DS_Store
+Thumbs.db

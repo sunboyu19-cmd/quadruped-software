@@ -1,0 +1,75 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Wheel diagnostic: Build",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "run",
+        "-e",
+        "wheel_diagnostic"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Wheel diagnostic: Upload",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "run",
+        "-e",
+        "wheel_diagnostic",
+        "-t",
+        "upload",
+        "--upload-port",
+        "${input:serialPort}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Wheel diagnostic: Serial monitor",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "device",
+        "monitor",
+        "-p",
+        "${input:serialPort}",
+        "-b",
+        "115200",
+        "--echo",
+        "--eol",
+        "LF",
+        "--filter",
+        "send_on_enter"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "serialPort",
+      "type": "promptString",
+      "description": "Actual ESP32 COM port, e.g. COM13",
+      "default": "COM13"
+    }
+  ]
+}

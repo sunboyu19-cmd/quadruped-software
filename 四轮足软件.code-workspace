@@ -1,0 +1,40 @@
+{
+  "folders": [
+    {
+      "name": "01 普通ESP32 轮电机（原始版）",
+      "path": "01_ESP32_WheelFOC"
+    },
+    {
+      "name": "02 ESP32-S3 轮电机（左右逐一测试）",
+      "path": "02_ESP32S3_WheelFOC"
+    },
+    {
+      "name": "03 ESP32-S3 微雪转接板舵机",
+      "path": "03_ESP32S3_Servo"
+    },
+    {
+      "name": "04 双ESP32 四轮四舵机基本运动",
+      "path": "04_ESP32_QuadrupedBasic"
+    },
+    {
+      "name": "05 单ESP32 四轮四舵机（TCA9548A）",
+      "path": "05_ESP32_QuadrupedSingle"
+    },
+    {
+      "name": "06 I2C独立焊线检测（PCA9548A）",
+      "path": "06_ESP32_I2CDiagnostic"
+    },
+    {
+      "name": "07 舵机1-4只读检测（普通ESP32）",
+      "path": "07_ESP32_ServoDiagnostic"
+    },
+    {
+      "name": "08 轮电机逐一FOC测试（普通ESP32）",
+      "path": "08_ESP32_WheelDiagnostic"
+    }
+  ],
+  "settings": {
+    "python.terminal.activateEnvironment": false,
+    "python-envs.terminal.autoActivationType": "off"
+  }
+}

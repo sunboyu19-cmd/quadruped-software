@@ -1,0 +1,837 @@
+{
+  "time_zone": "Asia/Shanghai",
+  "port": "COM10",
+  "scan_ids": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "scan_errors": [
+    "0x00",
+    "0x00",
+    "0x00",
+    "0x00"
+  ],
+  "test": "10 PING + 10 feedback reads per ID; no movement or EEPROM commands",
+  "results": [
+    {
+      "id": 1,
+      "ping_ok": 10,
+      "ping_attempts": 10,
+      "feedback_ok": 10,
+      "feedback_attempts": 10,
+      "samples": [
+        {
+          "id": "1",
+          "armed": "0",
+          "pos": "4092",
+          "deg": "359.65",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "1",
+          "armed": "0",
+          "pos": "4092",
+          "deg": "359.65",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "1",
+          "armed": "0",
+          "pos": "4092",
+          "deg": "359.65",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "1",
+          "armed": "0",
+          "pos": "4092",
+          "deg": "359.65",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "1",
+          "armed": "0",
+          "pos": "4092",
+          "deg": "359.65",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "1",
+          "armed": "0",
+          "pos": "4092",
+          "deg": "359.65",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "1",
+          "armed": "0",
+          "pos": "4092",
+          "deg": "359.65",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "1",
+          "armed": "0",
+          "pos": "4092",
+          "deg": "359.65",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "1",
+          "armed": "0",
+          "pos": "4092",
+          "deg": "359.65",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "1",
+          "armed": "0",
+          "pos": "4092",
+          "deg": "359.65",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": 2,
+      "ping_ok": 10,
+      "ping_attempts": 10,
+      "feedback_ok": 10,
+      "feedback_attempts": 10,
+      "samples": [
+        {
+          "id": "2",
+          "armed": "0",
+          "pos": "2",
+          "deg": "0.18",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.1",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "2",
+          "armed": "0",
+          "pos": "2",
+          "deg": "0.18",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.1",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "2",
+          "armed": "0",
+          "pos": "2",
+          "deg": "0.18",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.1",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "2",
+          "armed": "0",
+          "pos": "2",
+          "deg": "0.18",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.1",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "2",
+          "armed": "0",
+          "pos": "2",
+          "deg": "0.18",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.1",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "2",
+          "armed": "0",
+          "pos": "2",
+          "deg": "0.18",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.1",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "2",
+          "armed": "0",
+          "pos": "2",
+          "deg": "0.18",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.1",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "2",
+          "armed": "0",
+          "pos": "2",
+          "deg": "0.18",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.1",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "2",
+          "armed": "0",
+          "pos": "2",
+          "deg": "0.18",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.1",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "2",
+          "armed": "0",
+          "pos": "2",
+          "deg": "0.18",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.1",
+          "temp": "32",
+          "target": "0"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": 3,
+      "ping_ok": 10,
+      "ping_attempts": 10,
+      "feedback_ok": 10,
+      "feedback_attempts": 10,
+      "samples": [
+        {
+          "id": "3",
+          "armed": "0",
+          "pos": "4088",
+          "deg": "359.30",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "3",
+          "armed": "0",
+          "pos": "4088",
+          "deg": "359.30",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "3",
+          "armed": "0",
+          "pos": "4088",
+          "deg": "359.30",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "3",
+          "armed": "0",
+          "pos": "4088",
+          "deg": "359.30",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "3",
+          "armed": "0",
+          "pos": "4088",
+          "deg": "359.30",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "33",
+          "target": "0"
+        },
+        {
+          "id": "3",
+          "armed": "0",
+          "pos": "4088",
+          "deg": "359.30",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "33",
+          "target": "0"
+        },
+        {
+          "id": "3",
+          "armed": "0",
+          "pos": "4088",
+          "deg": "359.30",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "33",
+          "target": "0"
+        },
+        {
+          "id": "3",
+          "armed": "0",
+          "pos": "4088",
+          "deg": "359.30",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "3",
+          "armed": "0",
+          "pos": "4088",
+          "deg": "359.30",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        },
+        {
+          "id": "3",
+          "armed": "0",
+          "pos": "4088",
+          "deg": "359.30",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "5.9",
+          "temp": "32",
+          "target": "0"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": 4,
+      "ping_ok": 10,
+      "ping_attempts": 10,
+      "feedback_ok": 10,
+      "feedback_attempts": 10,
+      "samples": [
+        {
+          "id": "4",
+          "armed": "0",
+          "pos": "6",
+          "deg": "0.53",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.2",
+          "temp": "33",
+          "target": "0"
+        },
+        {
+          "id": "4",
+          "armed": "0",
+          "pos": "6",
+          "deg": "0.53",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.2",
+          "temp": "34",
+          "target": "0"
+        },
+        {
+          "id": "4",
+          "armed": "0",
+          "pos": "6",
+          "deg": "0.53",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.2",
+          "temp": "33",
+          "target": "0"
+        },
+        {
+          "id": "4",
+          "armed": "0",
+          "pos": "6",
+          "deg": "0.53",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.2",
+          "temp": "33",
+          "target": "0"
+        },
+        {
+          "id": "4",
+          "armed": "0",
+          "pos": "6",
+          "deg": "0.53",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.2",
+          "temp": "34",
+          "target": "0"
+        },
+        {
+          "id": "4",
+          "armed": "0",
+          "pos": "6",
+          "deg": "0.53",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.2",
+          "temp": "33",
+          "target": "0"
+        },
+        {
+          "id": "4",
+          "armed": "0",
+          "pos": "6",
+          "deg": "0.53",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.2",
+          "temp": "34",
+          "target": "0"
+        },
+        {
+          "id": "4",
+          "armed": "0",
+          "pos": "6",
+          "deg": "0.53",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.2",
+          "temp": "33",
+          "target": "0"
+        },
+        {
+          "id": "4",
+          "armed": "0",
+          "pos": "6",
+          "deg": "0.53",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.2",
+          "temp": "33",
+          "target": "0"
+        },
+        {
+          "id": "4",
+          "armed": "0",
+          "pos": "6",
+          "deg": "0.53",
+          "speed_raw": "0",
+          "load_raw": "0",
+          "voltage": "6.2",
+          "temp": "33",
+          "target": "0"
+        }
+      ],
+      "failures": []
+    }
+  ],
+  "log": [
+    {
+      "command": "I 1",
+      "response": "Selected id=1 (no motion command sent).\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 armed=0 pos=4092 deg=359.65 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=1\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 armed=0 pos=4092 deg=359.65 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=1\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 armed=0 pos=4092 deg=359.65 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 armed=0 pos=4092 deg=359.65 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 armed=0 pos=4092 deg=359.65 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=1\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 armed=0 pos=4092 deg=359.65 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 armed=0 pos=4092 deg=359.65 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 armed=0 pos=4092 deg=359.65 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=1\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 armed=0 pos=4092 deg=359.65 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 armed=0 pos=4092 deg=359.65 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "I 2",
+      "response": "Selected id=2 (no motion command sent).\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=1\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 armed=0 pos=2 deg=0.18 speed_raw=0 load_raw=0 voltage=6.1 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 armed=0 pos=2 deg=0.18 speed_raw=0 load_raw=0 voltage=6.1 temp=32 target=0\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 armed=0 pos=2 deg=0.18 speed_raw=0 load_raw=0 voltage=6.1 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=1\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 armed=0 pos=2 deg=0.18 speed_raw=0 load_raw=0 voltage=6.1 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 armed=0 pos=2 deg=0.18 speed_raw=0 load_raw=0 voltage=6.1 temp=32 target=0\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 armed=0 pos=2 deg=0.18 speed_raw=0 load_raw=0 voltage=6.1 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=1\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 armed=0 pos=2 deg=0.18 speed_raw=0 load_raw=0 voltage=6.1 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 armed=0 pos=2 deg=0.18 speed_raw=0 load_raw=0 voltage=6.1 temp=32 target=0\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 armed=0 pos=2 deg=0.18 speed_raw=0 load_raw=0 voltage=6.1 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=1\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 armed=0 pos=2 deg=0.18 speed_raw=0 load_raw=0 voltage=6.1 temp=32 target=0\n"
+    },
+    {
+      "command": "I 3",
+      "response": "Selected id=3 (no motion command sent).\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=1\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 armed=0 pos=4088 deg=359.30 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=1\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 armed=0 pos=4088 deg=359.30 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 armed=0 pos=4088 deg=359.30 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 armed=0 pos=4088 deg=359.30 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=1\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 armed=0 pos=4088 deg=359.30 speed_raw=0 load_raw=0 voltage=5.9 temp=33 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 armed=0 pos=4088 deg=359.30 speed_raw=0 load_raw=0 voltage=5.9 temp=33 target=0\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 armed=0 pos=4088 deg=359.30 speed_raw=0 load_raw=0 voltage=5.9 temp=33 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=1\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 armed=0 pos=4088 deg=359.30 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 armed=0 pos=4088 deg=359.30 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 armed=0 pos=4088 deg=359.30 speed_raw=0 load_raw=0 voltage=5.9 temp=32 target=0\n"
+    },
+    {
+      "command": "I 4",
+      "response": "Selected id=4 (no motion command sent).\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 armed=0 pos=6 deg=0.53 speed_raw=0 load_raw=0 voltage=6.2 temp=33 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=1\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 armed=0 pos=6 deg=0.53 speed_raw=0 load_raw=0 voltage=6.2 temp=34 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 armed=0 pos=6 deg=0.53 speed_raw=0 load_raw=0 voltage=6.2 temp=33 target=0\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 armed=0 pos=6 deg=0.53 speed_raw=0 load_raw=0 voltage=6.2 temp=33 target=0\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 armed=0 pos=6 deg=0.53 speed_raw=0 load_raw=0 voltage=6.2 temp=34 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=1\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 armed=0 pos=6 deg=0.53 speed_raw=0 load_raw=0 voltage=6.2 temp=33 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 armed=0 pos=6 deg=0.53 speed_raw=0 load_raw=0 voltage=6.2 temp=34 target=0\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 armed=0 pos=6 deg=0.53 speed_raw=0 load_raw=0 voltage=6.2 temp=33 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=1\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 armed=0 pos=6 deg=0.53 speed_raw=0 load_raw=0 voltage=6.2 temp=33 target=0\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=1\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 armed=0 pos=6 deg=0.53 speed_raw=0 load_raw=0 voltage=6.2 temp=33 target=0\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    }
+  ]
+}

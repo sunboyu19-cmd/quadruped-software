@@ -1,0 +1,11 @@
+{
+  "version":"2.0.0",
+  "tasks":[
+    {"label":"Quad: Build BOTH boards","type":"process","command":"${workspaceFolder}/../.tools/Scripts/python.exe","args":["-m","platformio","run","-e","front_master","-e","rear_follower"],"options":{"cwd":"${workspaceFolder}"},"group":{"kind":"build","isDefault":true},"problemMatcher":["$gcc"]},
+    {"label":"Quad: Upload A FRONT MASTER","type":"process","command":"${workspaceFolder}/../.tools/Scripts/python.exe","args":["-m","platformio","run","-e","front_master","-t","upload","--upload-port","${input:serialPort}"],"options":{"cwd":"${workspaceFolder}"},"problemMatcher":["$gcc"]},
+    {"label":"Quad: Upload B REAR FOLLOWER","type":"process","command":"${workspaceFolder}/../.tools/Scripts/python.exe","args":["-m","platformio","run","-e","rear_follower","-t","upload","--upload-port","${input:serialPort}"],"options":{"cwd":"${workspaceFolder}"},"problemMatcher":["$gcc"]},
+    {"label":"Quad: Serial monitor","type":"process","command":"${workspaceFolder}/../.tools/Scripts/python.exe","args":["-m","platformio","device","monitor","-p","${input:serialPort}","-b","115200","--echo","--eol","LF","--filter","send_on_enter"],"options":{"cwd":"${workspaceFolder}"},"problemMatcher":[]},
+    {"label":"Quad: Open control panel","type":"process","command":"${workspaceFolder}/../.tools/Scripts/python.exe","args":["tools/control_panel.py"],"options":{"cwd":"${workspaceFolder}"},"problemMatcher":[]}
+  ],
+  "inputs":[{"id":"serialPort","type":"promptString","description":"Actual classic ESP32 Micro-USB COM port (not the previous S3 COM10)","default":"COM"}]
+}

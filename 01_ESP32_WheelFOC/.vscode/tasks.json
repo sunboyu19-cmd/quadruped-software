@@ -1,0 +1,46 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "FOC: Build encoder test",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "run",
+        "-e",
+        "sensor_test"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "FOC: Build motor test",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "run",
+        "-e",
+        "motor_test"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    }
+  ]
+}

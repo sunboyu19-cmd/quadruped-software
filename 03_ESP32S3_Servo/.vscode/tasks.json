@@ -1,0 +1,78 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "S3 Servo: Build",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "run",
+        "-e",
+        "s3_servo_test"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "S3 Servo: Upload (replaces board firmware)",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "run",
+        "-e",
+        "s3_servo_test",
+        "-t",
+        "upload",
+        "--upload-port",
+        "${input:serialPort}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "S3 Servo: Serial monitor",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "device",
+        "monitor",
+        "-e",
+        "s3_servo_test",
+        "-p",
+        "${input:serialPort}",
+        "--eol",
+        "LF"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "serialPort",
+      "type": "promptString",
+      "description": "ESP32-S3 native USB port",
+      "default": "COM10"
+    }
+  ]
+}

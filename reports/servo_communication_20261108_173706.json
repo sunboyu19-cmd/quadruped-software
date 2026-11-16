@@ -1,0 +1,386 @@
+{
+  "port": "COM10",
+  "time_zone": "Asia/Shanghai",
+  "scan": "Scanning IDs 0..253 at current baud; no broadcast. Same-ID duplicates cannot be identified.\r\nSCAN done: 0 responding IDs. Select with I <id>.\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n",
+  "found_ids": [],
+  "results": [
+    {
+      "id": 1,
+      "ping_ok": 0,
+      "ping_attempts": 10,
+      "feedback_ok": 0,
+      "feedback_attempts": 10,
+      "samples": []
+    },
+    {
+      "id": 2,
+      "ping_ok": 0,
+      "ping_attempts": 10,
+      "feedback_ok": 0,
+      "feedback_attempts": 10,
+      "samples": []
+    },
+    {
+      "id": 3,
+      "ping_ok": 0,
+      "ping_attempts": 10,
+      "feedback_ok": 0,
+      "feedback_attempts": 10,
+      "samples": []
+    },
+    {
+      "id": 4,
+      "ping_ok": 0,
+      "ping_attempts": 10,
+      "feedback_ok": 0,
+      "feedback_attempts": 10,
+      "samples": []
+    }
+  ],
+  "log": [
+    {
+      "command": "H",
+      "response": "H help | SCAN read-only ID scan | I 1 select ID | S status | PING\r\nA hold CURRENT position | J 5 / J -5 jog degrees | D torque OFF | K keepalive\r\nID 2 SINGLE = persist selected servo's ID as 2; physically connect ONE servo only.\r\nB 1000000 = host UART baud only (38400/57600/76800/115200/128000/250000/500000/1000000)\r\nEnter one command per line. 30s without J/K -> torque OFF; support the mechanism.\r\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "SCAN",
+      "response": "Scanning IDs 0..253 at current baud; no broadcast. Same-ID duplicates cannot be identified.\r\nSCAN done: 0 responding IDs. Select with I <id>.\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "I 1",
+      "response": "Selected id=1 (no motion command sent).\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "READY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\nPING id=1 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=0\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=0\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=0\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=1 ok=0\nREADY selected=1 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=1 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "I 2",
+      "response": "Selected id=2 (no motion command sent).\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=0\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=0\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=0\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=0\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=0\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=0\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=2 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=2 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=2 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "I 3",
+      "response": "Selected id=3 (no motion command sent).\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=0\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=0\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=0\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=0\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=3 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=3 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "I 4",
+      "response": "READY selected=3 armed=0 off_pending=0; H help, SCAN find IDs\nSelected id=4 (no motion command sent).\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=0\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=0\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=0\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=0\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    },
+    {
+      "command": "PING",
+      "response": "PING id=4 ok=0\nREADY selected=4 armed=0 off_pending=0; H help, SCAN find IDs\n"
+    },
+    {
+      "command": "S",
+      "response": "id=4 FEEDBACK FAILED error=0x00; check power/jumper/baud/wiring/duplicate IDs\n"
+    }
+  ]
+}

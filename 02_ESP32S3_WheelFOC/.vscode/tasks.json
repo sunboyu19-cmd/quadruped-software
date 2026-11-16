@@ -1,0 +1,139 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "S3 FOC: Upload LEFT sensor test",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "run",
+        "-e",
+        "s3_left_sensor_test",
+        "-t",
+        "upload",
+        "--upload-port",
+        "${input:serialPort}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "S3 FOC: Upload LEFT motor test",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "run",
+        "-e",
+        "s3_left_motor_test",
+        "-t",
+        "upload",
+        "--upload-port",
+        "${input:serialPort}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "S3 FOC: Build sensor test",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "run",
+        "-e",
+        "s3_sensor_test"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "S3 FOC: Build motor test",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "run",
+        "-e",
+        "s3_motor_test"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "S3 FOC: Upload sensor test (replaces board firmware)",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "run",
+        "-e",
+        "s3_sensor_test",
+        "-t",
+        "upload",
+        "--upload-port",
+        "${input:serialPort}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "S3 FOC: Serial monitor",
+      "type": "process",
+      "command": "${workspaceFolder}/../.tools/Scripts/python.exe",
+      "args": [
+        "-m",
+        "platformio",
+        "device",
+        "monitor",
+        "-e",
+        "s3_sensor_test",
+        "-p",
+        "${input:serialPort}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "serialPort",
+      "type": "promptString",
+      "description": "Native USB Serial/JTAG port (VID303A:1001); re-check port after reconnect",
+      "default": "COM10"
+    }
+  ]
+}
