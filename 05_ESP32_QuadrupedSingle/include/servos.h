@@ -21,7 +21,7 @@ class ServoBank {
   bool byteWrite(int id,int reg,int value);
   bool wordWrite(int id,int reg,int value);
   bool sendGoal(int index,int goal);
-  bool sendGoals(const int values[4]);
+  bool sendGoals(const int values[4],bool fastPosture=false);
   bool positionInWindow(int index,int position);
   TeachingRecord teaching_[4];
   int hardwareOffset_[4]={-1,-1,-1,-1}, hardwarePhase_[4]={-1,-1,-1,-1};

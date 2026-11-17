@@ -170,7 +170,7 @@ bool ServoBank::beginTaughtMove(float blend,uint8_t mask,bool relative) {
     taughtGoal_[i]=next[i]; taughtOrigin_[i]=goal[i];
     maxDistance=std::max(maxDistance,abs(next[i]-goal[i]));
   }
-  taughtProgress_=0; taughtStep_=25.0f/maxDistance;
+  taughtProgress_=0; taughtStep_=float(Config::POSTURE_STEP_COUNTS)/maxDistance;
   taughtMoving_=true; taughtStart_=millis(); taughtStable_=0;
   // Retargeting must not buy an extra trajectory step. Keep the previous
   // dispatch deadline even when many BLEND commands arrive in one cycle.
@@ -204,7 +204,7 @@ void ServoBank::tickTaughtMove() {
     changed=changed || next[i]!=goal[i];
     if(next[i]!=taughtGoal_[i] || abs(status[i].position-taughtGoal_[i])>8) settled=false;
   }
-  if(changed && !sendGoals(next)) { fault_=true; stopTaughtMove("sync target readback failure"); return; }
+  if(changed && !sendGoals(next,true)) { fault_=true; stopTaughtMove("sync target readback failure"); return; }
   taughtProgress_=progress;
   taughtStable_=settled ? taughtStable_+1:0;
   if(taughtStable_>=3) {

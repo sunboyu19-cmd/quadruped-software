@@ -47,12 +47,12 @@ bool ServoBank::poll(int i) {
   if(active_ && !s.valid) fault_=true;
   return s.valid;
 }
-bool ServoBank::sendGoals(const int values[4]) {
+bool ServoBank::sendGoals(const int values[4],bool fastPosture) {
   u8 ids[4],acc[4]; s16 positions[4]; u16 speeds[4];
   for(int i=0;i<4;++i) {
     if(!taughtTargetAllowed(i,values[i])) return false;
     ids[i]=Config::SERVO_IDS[i]; positions[i]=values[i];
-    speeds[i]=Config::SERVO_SPEED; acc[i]=Config::SERVO_ACC;
+    speeds[i]=fastPosture ? Config::POSTURE_SERVO_SPEED : Config::SERVO_SPEED; acc[i]=fastPosture ? Config::POSTURE_SERVO_ACC : Config::SERVO_ACC;
   }
   bus.SyncWritePosEx(ids,4,positions,speeds,acc); uart.flush(); delay(3);
   // Broadcast has no ACK: verify each target register before updating cache.

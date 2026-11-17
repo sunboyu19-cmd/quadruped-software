@@ -238,7 +238,7 @@ void help() {
   Serial.println("CAL / A: align SELECTED wheel, then outputs OFF; all wheels unloaded");
   Serial.println("RUN <rad/s> <seconds> (0.1..10s); V0.5 / V-0.5 = 3s test; V0 stops");
   Serial.println("D / STOP / DISARM: common EN LOW; SPEED 100000 / SPEED 400000 (OFF only)");
-  Serial.println("VM=6V,7 pole pairs,align=1.5V,output limit=2.5V,max target=12rad/s; no current sense");
+  Serial.println("VM=6V,7 pole pairs,align=2.0V,output limit=2.5V,max target=12rad/s; no current sense");
   Serial.println("No servo UART, IMU, WiFi, Bluetooth or NVS writes. CAL/RUN are the ONLY enabling commands.");
 }
 bool number(const char* text,float& value) { char* end=nullptr; value=strtof(text,&end); return end!=text && !*end && isfinite(value); }

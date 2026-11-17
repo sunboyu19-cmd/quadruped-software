@@ -4,7 +4,7 @@ namespace Config {
 // ESP32-DevKitC V4 / WROOM-32E, NOT S3/C3/WROVER.
 constexpr float VM = 6.0f;
 constexpr int POLE_PAIRS = 7;
-constexpr float ALIGN_V = 1.5f;
+constexpr float ALIGN_V = 2.5f;
 // Voltage-mode FOC has no measured current/temperature protection.
 constexpr float LIMIT_V = 2.5f;
 constexpr float MAX_SPEED = 12.0f; // Logical wheel rad/s.
@@ -31,6 +31,11 @@ constexpr float SERVO_V_MAX = 6.8f;
 constexpr int SERVO_TEMP_MAX = 60;
 constexpr int SERVO_SPEED = 500;
 constexpr int SERVO_ACC = 20;
+// Faster taught posture transitions; ordinary joint jog settings stay unchanged.
+constexpr int POSTURE_SERVO_SPEED = 1000;
+constexpr int POSTURE_SERVO_ACC = 40;
+constexpr int POSTURE_STEP_COUNTS = 40; // At most 40 counts per 50ms (800 counts/s).
+static_assert(POSTURE_STEP_COUNTS > 0 && POSTURE_STEP_COUNTS <= 50, "Posture step must remain below the 64-count following-error guard");
 constexpr int SERVO_TORQUE = 800; // 80% register limit, NOT a current limit.
 constexpr float SERVO_RANGE_DEG = 15;
 constexpr float SERVO_STEP_DEG = 5;

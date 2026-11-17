@@ -32,7 +32,7 @@ $('applyfront').onclick=()=>groupPercent('FRONT');$('applyrear').onclick=()=>gro
 const postureKeys={'1':['ALL',1],'2':['ALL',-1],'3':['FRONT',1],'4':['FRONT',-1],'5':['REAR',1],'6':['REAR',-1]};
 let postureKey=null,postureTimer=null;
 function endPostureKey(send=true){const active=postureKey!==null;postureKey=null;clearInterval(postureTimer);postureTimer=null;postureQueue.cancel();if(active&&send&&connected&&mine)sendCommand('POSTURESTOP')}
-function beginPostureKey(k){if(!connected||!mine||!ready){note('请先连接主控并使能舵机、读取有效站趴点位');return}endPostureKey(false);postureKey=k;const [group,sign]=postureKeys[k];const shift=()=>sendCommand('SHIFT '+group+' '+(sign*0.0075).toFixed(4));shift();postureTimer=setInterval(shift,250)}
+function beginPostureKey(k){if(!connected||!mine||!ready){note('请先连接主控并使能舵机、读取有效站趴点位');return}endPostureKey(false);postureKey=k;const [group,sign]=postureKeys[k];const shift=()=>sendCommand('SHIFT '+group+' '+(sign*0.02).toFixed(4));shift();postureTimer=setInterval(shift,100)}
 window.addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(currentView==='operate'&&postureKeys[e.key]){e.preventDefault();if(!e.repeat&&postureKey!==e.key)beginPostureKey(e.key)}});
 window.addEventListener('keyup',e=>{if(postureKey===e.key){e.preventDefault();endPostureKey()}});
 
