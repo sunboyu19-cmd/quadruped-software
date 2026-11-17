@@ -1,9 +1,9 @@
 #pragma once
 #include <stdint.h>
 namespace Config {
-constexpr int SDA=21,SCL=22,ENABLE=13;
+constexpr int SDA=25,SCL=33,ENABLE=26;
 constexpr uint8_t MUX=0x70,CHANNEL[4]={7,2,6,1}; // FL,FR,RL,RR; IMU ch0 is never selected.
-constexpr int PWM[4][3]={{25,26,27},{18,19,23},{14,16,17},{32,33,4}};
+constexpr int PWM[4][3]={{4,16,17},{13,14,27},{21,22,23},{5,18,19}};
 constexpr float VM=6.0f,LIMIT_V=2.5f,ALIGN_V=1.5f;
 constexpr int POLES=7;
 constexpr float MAX_SPEED=12,OVERSPEED=30,DEFAULT_SECONDS=3,MAX_SECONDS=10;

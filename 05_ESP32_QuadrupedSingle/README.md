@@ -16,17 +16,17 @@ ESP32只有控制信号连接驱动板；电机电流走6V电源分配。所有�
 
 | 编号/位置 | MiniFOC PWM A | PWM B | PWM C | EN | TCA通道 |
 |---|---:|---:|---:|---|---:|
-| 1 左前 | GPIO25 | GPIO26 | GPIO27 | 共用GPIO13 | 7 |
-| 2 右前 | GPIO18 | GPIO19 | GPIO23 | 共用GPIO13 | 2 |
-| 3 左后 | GPIO14 | GPIO16 | GPIO17 | 共用GPIO13 | 6 |
-| 4 右后 | GPIO32 | GPIO33 | GPIO4 | 共用GPIO13 | 1 |
+| 1 左前 | GPIO4 | GPIO16 | GPIO17 | 共用GPIO26 | 7 |
+| 2 右前 | GPIO13 | GPIO14 | GPIO27 | 共用GPIO26 | 2 |
+| 3 左后 | GPIO21 | GPIO22 | GPIO23 | 共用GPIO26 | 6 |
+| 4 右后 | GPIO5 | GPIO18 | GPIO19 | 共用GPIO26 | 1 |
 
-四块MiniFOC的EN并接GPIO13，GPIO13与GND间接下拉电阻。不要再连接旧B板的任何PWM、EN或板间UART输出；不允许两个控制器同时驱动同一根信号线。
+四块MiniFOC的EN并接GPIO26，GPIO26与GND间接下拉电阻。不要再连接旧B板的任何PWM、EN或板间UART输出；不允许两个控制器同时驱动同一根信号线。
 
 | ESP32 / 电源 | 对接端 |
 |---|---|
-| GPIO21 | TCA9548A上游SDA |
-| GPIO22 | TCA9548A上游SCL |
+| GPIO25 | TCA9548A上游SDA |
+| GPIO33 | TCA9548A上游SCL |
 | 3V3 | TCA模块VCC、四个AS5600 VCC（模块须支持3.3V） |
 | GND | TCA、编码器、MiniFOC、微雪板、电源负极共地 |
 | TCA SD0 / SC0 | MPU6050 SDA / SCL |
@@ -37,13 +37,13 @@ ESP32只有控制信号连接驱动板；电机电流走6V电源分配。所有�
 | TCA A0、A1、A2 | GND，固定地址0x70（已有下拉的模块按其说明） |
 | TCA RESET / RST | 按模块说明保持高电平，裸露输入可经10kΩ上拉至3.3V，不接地 |
 | TCA 通道3、4、5 | 空置 |
-| GPIO5 | 微雪Adapter(A) **TX**（沿用已验证的板端标注，原来GPIO4改成GPIO5） |
-| GPIO34 | 微雪Adapter(A) **RX** |
+| GPIO32（ESP32 TX） | 微雪Adapter(A) **TX**（沿用已验证的板端标注） |
+| GPIO35（ESP32 RX） | 微雪Adapter(A) **RX** |
 | 稳压6V | 四块MiniFOC动力输入、微雪板舵机电源输入 |
 
-微雪板跳帽A档，总线舵机ID仍为1左前、2右前、3左后、4右后。确认微雪板输出到GPIO34的信号不高于3.3V。
+微雪板跳帽A档，总线舵机ID仍为1左前、2右前、3左后、4右后。确认微雪板输出到GPIO35的信号不高于3.3V。
 
-GPIO5是ESP32启动配置脚，复位时应维持默认高电平，适合UART TX的空闲高电平。本方案要求微雪输入不在复位时强拉低GPIO5；如接入后启动异常，先断开这根信号确认并检查接口电平。GPIO0/12、闪存GPIO6～11、串口GPIO1/3均未用作电机信号；GPIO34只作输入。
+GPIO5现为右后轮PWM A，是启动配置脚，其采样电平影响SDIO从机时序；本工程不使用SDIO从机。复位期间依靠GPIO26的外部下拉保持共用EN为低，不能依赖PWM脚初始电平关闭驱动。GPIO0/12、闪存GPIO6～11、串口GPIO1/3均未用作电机信号；GPIO35只作输入且没有内部上拉/下拉。UART使用TX32/RX35，I2C使用SDA25/SCL33。更换PWM引脚后旧FOC记录因引脚签名不匹配而失效，四轮悬空后重新ARM校准；PWM A/B/C按表中顺序接线。
 
 ## 编译、烧录与打开网页
 

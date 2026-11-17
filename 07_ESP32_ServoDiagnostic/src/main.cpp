@@ -6,7 +6,7 @@
 #error "This diagnostic is for classic ESP32-WROOM, not S3/C3."
 #endif
 namespace {
-constexpr int TX_PIN=5,RX_PIN=34,ENABLE_PIN=13;
+constexpr int TX_PIN=32,RX_PIN=35,ENABLE_PIN=26;
 constexpr uint32_t BAUD=1000000,REPLY_TIMEOUT_MS=30;
 HardwareSerial bus(1);
 bool watch=false,debug=false;
@@ -111,8 +111,8 @@ void scan() {
 void help() {
   Serial.println("H | CHECK (S) | TEST <1..4> | SCAN (ID register READ 1..4) | WATCH ON / WATCH OFF (2s) | RESETSTATS");
   Serial.println("DEBUG ON / DEBUG OFF: show failed transaction bytes; echoed TX alone is not a servo response");
-  Serial.println("READ ONLY: no torque/position/ID/baud/offset/limit writes. No motor PWM or I2C. EN13 LOW.");
-  Serial.println("Support body; servo adapter needs correct 6V and common GND, jumper A, TX5->adapter TX, RX34->adapter RX.");
+  Serial.println("READ ONLY: no torque/position/ID/baud/offset/limit writes. No motor PWM or I2C. EN26 LOW.");
+  Serial.println("Support body; servo adapter needs correct 6V and common GND, jumper A, TX32->adapter TX, RX35->adapter RX.");
 }
 void command(char* text) {
   for(char* p=text;*p;++p) if(*p>='a' && *p<='z') *p-=32;

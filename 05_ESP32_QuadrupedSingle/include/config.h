@@ -11,18 +11,19 @@ constexpr float MAX_SPEED = 12.0f; // Logical wheel rad/s.
 constexpr float MAX_TURN = 4.0f; // Differential component, wheel rad/s.
 constexpr float TEST_SPEED = 1.0f;
 constexpr float OVERSPEED = 30.0f;
-constexpr int SDA = 21, SCL = 22;
+constexpr int SDA = 25, SCL = 33;
 constexpr uint8_t MUX_ADDRESS = 0x70; // TCA9548A A0/A1/A2 -> GND.
 constexpr uint8_t MUX_CHANNEL[4] = {7,2,6,1}; // FL, FR, RL, RR; actual wiring 2026-11-14.
 constexpr uint8_t IMU_CHANNEL = 0;
 constexpr uint8_t IMU_ADDRESS = 0x68; // MPU6050 AD0 -> GND, downstream channel 0.
 constexpr int8_t IMU_AXES[3] = {1,2,3}; // Body X/Y/Z from signed sensor axes; X forward,Y left,Z up.
-constexpr int PWM[4][3] = {{25,26,27}, {18,19,23}, {14,16,17}, {32,33,4}};
-constexpr int ENABLE = 13; // Four EN inputs together; external pulldown required, see README.
+// FL, FR, RL, RR; each row is PWM A/B/C (confirmed wiring 2026-11-17).
+constexpr int PWM[4][3] = {{4,16,17}, {13,14,27}, {21,22,23}, {5,18,19}};
+constexpr int ENABLE = 26; // Four EN inputs together; external pulldown required, see README.
 constexpr unsigned long CONTROL_TIMEOUT_MS = 500; // Local command-task watchdog.
 constexpr unsigned long DRIVE_TIMEOUT_MS = 1500;
-constexpr int SERVO_TX = 5;   // GPIO5 -> Waveshare Adapter(A) TX; see boot-strap notes.
-constexpr int SERVO_RX = 34;  // Master GPIO34 -> Waveshare Adapter(A) RX
+constexpr int SERVO_TX = 32;  // GPIO32 -> Waveshare Adapter(A) TX; verified adapter labeling.
+constexpr int SERVO_RX = 35;  // GPIO35 input only; no internal pull-up/down.
 constexpr unsigned long SERVO_BAUD = 1000000;
 constexpr int SERVO_IDS[4] = {1,2,3,4}; // FL, FR, RL, RR
 constexpr float SERVO_V_MIN = 5.0f;

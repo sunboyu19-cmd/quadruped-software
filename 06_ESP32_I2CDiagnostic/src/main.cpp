@@ -7,7 +7,7 @@
 #error "Use the classic ESP32-WROOM controller, not S3/C3."
 #endif
 namespace {
-constexpr int SDA_PIN=21,SCL_PIN=22,ENABLE_PIN=13;
+constexpr int SDA_PIN=25,SCL_PIN=33,ENABLE_PIN=26;
 constexpr uint8_t CHANNELS[4]={7,2,6,1};
 const char* const NAMES[4]={"FL(left-front)","FR(right-front)","RL(left-rear)","RR(right-rear)"};
 uint8_t muxAddress=0x70;
@@ -18,7 +18,7 @@ bool upstream[127]={};
 uint8_t lastAckError=0;
 
 void lines() {
-  Serial.printf("BUS idle SDA21=%d SCL22=%d (normally both 1); speed=%lu timeout_setting_ms=%u\n",
+  Serial.printf("BUS idle SDA25=%d SCL33=%d (normally both 1); speed=%lu timeout_setting_ms=%u\n",
     digitalRead(SDA_PIN),digitalRead(SCL_PIN),(unsigned long)speed,Wire.getTimeOut());
 }
 
@@ -53,7 +53,7 @@ bool writeReg(uint8_t address,uint8_t reg,uint8_t value) {
 int signed16(const uint8_t* p) { return int16_t((uint16_t(p[0])<<8)|p[1]); }
 
 void scan() {
-  Serial.printf("SCAN SDA=21 SCL=22 speed=%lu mux=0x%02X; IDs below are CHANNELS, not device addresses\n",(unsigned long)speed,muxAddress);
+  Serial.printf("SCAN SDA=25 SCL=33 speed=%lu mux=0x%02X; IDs below are CHANNELS, not device addresses\n",(unsigned long)speed,muxAddress);
   if(!ack(muxAddress)) {
     Serial.println("MUX MISSING. Check 3.3V/GND/SDA/SCL/RST and A0/A1/A2. ACK candidates:");
     for(uint8_t a=0x70;a<=0x77;++a) if(ack(a)) Serial.printf("  candidate=0x%02X (use MUX %02X if this is your mux)\n",a,a);
@@ -146,7 +146,7 @@ void help() {
   Serial.println("H | SCAN (all 8 branches) | CHECK (5 expected sensors) | WATCH ON / WATCH OFF (500ms)");
   Serial.println("IMU ON (wake MPU6050 ONLY) | SPEED 100000 / SPEED 400000 | MUX 70..77 (hex) | RESETSTATS");
   Serial.println("LINES | OFF (deselect all branches) | TEST <0..7> (one branch, auto WATCH OFF)");
-  Serial.println("No motor PWM, no servo UART, no WiFi. EN13 LOW. Keep 6V motion power OFF.");
+  Serial.println("No motor PWM, no servo UART, no WiFi. EN26 LOW. Keep 6V motion power OFF.");
 }
 void command(char* text) {
   for(char* p=text;*p;++p) if(*p>='a' && *p<='z') *p-=32;
