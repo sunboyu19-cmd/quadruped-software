@@ -7,6 +7,13 @@ const assert=require('node:assert/strict'),LatestTarget=require('./web/latest_ta
   const r=mix(1,turn,speed,4,1);assert.ok(Math.max(Math.abs(r.left),Math.abs(r.right))<=12);
   assert.ok(Math.abs(r.t)<=4);
  }
+ const raised={speed:16,turn:6};
+ assert.deepEqual(mix(0,1,2,6,.7,5,raised),{f:5,t:6,left:-1,right:11});
+ for(const direction of [-1,1]){
+  const mixed=mix(1,direction,16,6,1,0,raised);
+  assert.ok(Math.max(Math.abs(mixed.left),Math.abs(mixed.right))<=16);
+  assert.ok(Math.abs(mixed.t)<=6);
+ }
  const legacy=new LatestTarget.LegacyLogCursor();
  assert.deepEqual(legacy.accept(['command','status']),['command','status']);
  assert.deepEqual(legacy.accept(['command','status']),[]);

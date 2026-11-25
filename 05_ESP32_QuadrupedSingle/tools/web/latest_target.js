@@ -33,13 +33,14 @@ class LegacyLogCursor {
 }
 if(typeof module!=='undefined')module.exports.LegacyLogCursor=LegacyLogCursor;
 if(typeof module!=='undefined')module.exports.LogCursor=LogCursor;
-function isPeriodicLog(line){return /^(IMU |HOST_ALIVE |role=|wheel=|WDIR=|TEACHDATA |DIRDATA |servo=|servos_active=|unloaded_setup=|>>> HB$)/.test(line)}
+function isPeriodicLog(line){return /^(IMU |IMULEVEL |YAWDRIVE |HOST_ALIVE |role=|wheel=|WDIR=|TEACHDATA |DIRDATA |servo=|servos_active=|unloaded_setup=|>>> HB$)/.test(line)}
 if(typeof module!=='undefined')module.exports.isPeriodicLog=isPeriodicLog;
-function mixDrive(forward,turn,speed,spin,curve=.7){
-  if(![forward,turn,speed,spin,curve].every(Number.isFinite)||speed<.1||speed>12||spin<.1||spin>4||curve<.1||curve>1)throw Error('驾驶参数超限');
-  let f=forward*speed,t=turn*(forward===0?spin:Math.min(4,speed*curve));
+function mixDrive(forward,turn,speed,spin,curve=.7,turnForward=0,limits={speed:12,turn:4},analog=false){
+  if(![forward,turn,speed,spin,curve,turnForward].every(Number.isFinite)||speed<.1||speed>limits.speed||spin<0||spin>limits.turn||curve<.1||curve>1||turnForward<0||turnForward>limits.speed)throw Error('驾驶参数超限');
+  let f=forward*speed,t=turn*(analog||forward===0?spin:Math.min(limits.turn,speed*curve));
+  if(!analog&&forward===0&&turn!==0) f=turnForward;
   const peak=Math.max(Math.abs(f-t),Math.abs(f+t));
-  if(peak>12){f*=11.9998/peak;t*=11.9998/peak}
+  if(peak>limits.speed){const scale=(limits.speed-.0002)/peak;f*=scale;t*=scale}
   return {f,t,left:f-t,right:f+t};
 }
 if(typeof module!=='undefined')module.exports.mixDrive=mixDrive;

@@ -25,6 +25,27 @@ class WebTests(unittest.TestCase):
     def test_joint_command_does_not_cancel_held_drive(self):
         self.b.drive('one',1,1,0); self.b.command('one',2,'J 2 1')
         self.assertEqual(self.b.motion,'MOVE 1.0000 0.0000'); self.assertEqual(self.p.sent[-1],'J 2 1')
+    def test_drive_and_joint_steps_can_arrive_out_of_order(self):
+        self.b.drive('one',2,1,0)
+        self.b.command('one',1,'J 2 -1')
+        self.assertEqual(self.p.sent[-1],'J 2 -1')
+
+        self.b.command('one',4,'J 2 1')
+        self.b.drive('one',3,2,0)
+        self.assertEqual(self.b.motion,'MOVE 2.0000 0.0000')
+        self.b.command('one',5,'STOP')
+        self.b.command('one',4,'J 2 1')
+        self.b.drive('one',4,2,0)
+        self.assertIsNone(self.b.motion)
+        self.assertEqual(self.p.sent[-1],'STOP')
+
+    def test_stop_is_not_dropped_when_a_later_joint_request_arrives_first(self):
+        self.b.drive('one',1,1,0)
+        self.b.command('one',3,'J 2 -1')
+        self.b.command('one',2,'STOP')
+        self.assertIsNone(self.b.motion)
+        self.assertEqual(self.p.sent[-1],'STOP')
+
     def test_other_browser_and_out_of_range_rejected(self):
         with self.assertRaises(ValueError): self.b.drive('two',1,1,0)
         with self.assertRaises(ValueError): self.b.drive('one',1,12,1)
@@ -99,8 +120,17 @@ class WebTests(unittest.TestCase):
         self.assertEqual(self.b.pose_until,0)
     def test_pose_key_delta_is_bounded(self):
         self.b.features.add('TEACHING_V1')
-        for c in ('SHIFT ALL 1','SHIFT WRONG 0.01','SHIFT ALL NAN'):
+        for c in ('SHIFT ALL 1','SHIFT ALL 0.0401','SHIFT ALL -0.0401','SHIFT WRONG 0.01','SHIFT ALL NAN','SHIFT ALL INF'):
             with self.assertRaises(ValueError): self.b.command('one',1,c)
+    def test_fast_pose_key_accepts_both_directions_and_stops_on_timeout(self):
+        self.b.features.add('TEACHING_V1')
+        self.b.command('one',1,'SHIFT FRONT 0.04')
+        self.b.command('one',2,'SHIFT REAR -0.04')
+        self.assertEqual(self.p.sent[-2:],['SHIFT FRONT 0.04','SHIFT REAR -0.04'])
+        self.now=10.36; self.b.tick()
+        self.assertEqual(self.p.sent[-1],'POSTURESTOP')
+        self.assertEqual(self.b.pose_until,0)
+
     def test_percent_posture_preserves_browser_drive_lease(self):
         self.b.features.add('TEACHING_V1')
         self.b.drive('one',1,1,0); self.b.command('one',2,'BLEND 0.75')
@@ -111,5 +141,40 @@ class WebTests(unittest.TestCase):
         self.b.command('one',4,'BLEND REAR 0.25')
         self.assertEqual(self.p.sent[-1],'BLEND REAR 0.25')
         self.assertIsNotNone(self.b.motion)
+
+class LevelCommandTests(unittest.TestCase):
+    setUp=WebTests.setUp
+    def test_level_requires_new_firmware(self):
+        for command in ('LEVEL 1 0 0','SERVOS ON','SERVOS ON 1 0 0'):
+            with self.assertRaises(ValueError): self.b.command('one',1,command)
+        self.assertEqual(self.p.sent,[])
+
+    def test_level_accepts_target_without_resetting_controller_or_old_key_timer(self):
+        self.b.features.add('IMU_LEVEL_V1'); self.b.wheel_off=True; self.b.pose_until=10.35
+        self.b.command('one',1,'LEVEL 3 2 -1.5')
+        self.assertEqual(self.p.sent,['LEVEL 3 2 -1.5']); self.assertEqual(self.b.pose_until,0)
+        self.now=10.36; self.b.tick(); self.assertNotIn('POSTURESTOP',self.p.sent)
+
+    def test_level_rejects_invalid_reference_nonfinite_and_out_of_range(self):
+        self.b.features.add('IMU_LEVEL_V1'); self.b.wheel_off=True
+        for command in ('LEVEL 0 0 0','LEVEL 1.5 0 0','LEVEL 1 5.1 0','LEVEL 1 NAN 0','LEVEL 1 0 INF','LEVEL 1 0','SERVOS ON 5 0 0','SERVOS ON 1 0 -5.1'):
+            with self.assertRaises(ValueError): self.b.command('one',1,command)
+        self.assertEqual(self.p.sent,[])
+
+    def test_level_requires_wheels_off_but_read_and_off_remain_available(self):
+        self.b.features.add('IMU_LEVEL_V1'); self.b.wheel_off=False
+        with self.assertRaises(ValueError): self.b.command('one',1,'LEVEL 1 0 0')
+        self.b.command('one',2,'LEVEL READ'); self.b.command('one',3,'LEVEL OFF')
+        self.assertEqual(self.p.sent,['LEVEL READ','LEVEL OFF'])
+
+    def test_level_enable_preserves_reference_and_targets(self):
+        self.b.features.add('IMU_LEVEL_V1'); self.b.wheel_off=True
+        self.b.command('one',1,'SERVOS ON 4 -2.5 3')
+        self.assertEqual(self.p.sent,['STOP','SERVOS ON 4 -2.5 3'])
+
+    def test_delayed_level_target_cannot_restart_after_stop(self):
+        self.b.features.add('IMU_LEVEL_V1'); self.b.wheel_off=True
+        self.b.command('one',3,'STOP'); self.b.command('one',2,'LEVEL 1 0 0')
+        self.assertEqual(self.p.sent,['STOP','STOP'])
 
 if __name__=='__main__': unittest.main()

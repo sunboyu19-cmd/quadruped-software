@@ -161,6 +161,10 @@ void imuTick(bool wheelsOff,bool safe) {
   const float dt=lastSample ? (now-lastSample)*0.001f:0;
   filter.step(a[0],a[1],a[2],s.gx,s.gy,s.gz,dt); lastSample=now;
   s.roll=ImuMath::wrap(filter.roll()-zeroRoll); s.pitch=ImuMath::wrap(filter.pitch()-zeroPitch); s.yaw=filter.yaw();
+  // Euler yaw rate from corrected body Y/Z gyro and physical, un-zeroed tilt.
+  const float rollRad=filter.roll()/ImuMath::DEG, pitchRad=filter.pitch()/ImuMath::DEG;
+  const float pitchCos=cosf(pitchRad);
+  s.yawRate=pitchCos>0.5f ? (s.gy*sinf(rollRad)+s.gz*cosf(rollRad))/pitchCos : NAN;
   s.sampled=now; s.valid=true;
   calibrateSample(a,g,safe,now);
   publish();

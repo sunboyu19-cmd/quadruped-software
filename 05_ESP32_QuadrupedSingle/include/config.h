@@ -7,8 +7,14 @@ constexpr int POLE_PAIRS = 7;
 constexpr float ALIGN_V = 2.5f;
 // Voltage-mode FOC has no measured current/temperature protection.
 constexpr float LIMIT_V = 2.5f;
-constexpr float MAX_SPEED = 12.0f; // Logical wheel rad/s.
-constexpr float MAX_TURN = 4.0f; // Differential component, wheel rad/s.
+constexpr float MAX_SPEED = 16.0f; // Logical wheel rad/s.
+constexpr float MAX_TURN = 16.0f; // Differential component, wheel rad/s.
+constexpr float YAW_MAX_DPS = 90.0f;
+constexpr float YAW_DEFAULT_DPS = 45.0f;
+constexpr float YAW_ACCEL_DPS2 = 120.0f;
+// Initial gains in wheel rad/s per deg/s. Tune from loaded motion logs.
+constexpr float YAW_FF = 0.10f, YAW_KP = 0.11f, YAW_KI = 0.22f;
+constexpr float YAW_TURN_PRIORITY = 0.75f; // 0.5 scales both equally; 1.0 prioritizes yaw.
 constexpr float TEST_SPEED = 1.0f;
 constexpr float OVERSPEED = 30.0f;
 constexpr int SDA = 25, SCL = 33;
@@ -32,9 +38,9 @@ constexpr int SERVO_TEMP_MAX = 60;
 constexpr int SERVO_SPEED = 500;
 constexpr int SERVO_ACC = 20;
 // Faster taught posture transitions; ordinary joint jog settings stay unchanged.
-constexpr int POSTURE_SERVO_SPEED = 1000;
-constexpr int POSTURE_SERVO_ACC = 40;
-constexpr int POSTURE_STEP_COUNTS = 40; // At most 40 counts per 50ms (800 counts/s).
+constexpr int POSTURE_SERVO_SPEED = 1500;
+constexpr int POSTURE_SERVO_ACC = 60;
+constexpr int POSTURE_STEP_COUNTS = 50; // At most 50 counts per 50ms (1000 counts/s).
 static_assert(POSTURE_STEP_COUNTS > 0 && POSTURE_STEP_COUNTS <= 50, "Posture step must remain below the 64-count following-error guard");
 constexpr int SERVO_TORQUE = 800; // 80% register limit, NOT a current limit.
 constexpr float SERVO_RANGE_DEG = 15;

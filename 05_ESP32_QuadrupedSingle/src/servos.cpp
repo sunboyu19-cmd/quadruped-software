@@ -26,38 +26,57 @@ bool ServoBank::sendGoal(int i,int value) {
   goal[i]=value; return true;
 }
 bool ServoBank::poll(int i) {
-  auto& s=status[i]; s.valid=false;
-  int received=-1;
+  const int id=Config::SERVO_IDS[i];
+  auto& s=status[i];
+  s.valid=false;
+  bool gotFeedback=false;
   for(int attempt=0;attempt<3;++attempt) {
-    received=bus.FeedBack(Config::SERVO_IDS[i]);
-    if(received>=0) break;
-    if(attempt<2) delay(2);
+    if(attempt) delay(8);
+    if(bus.FeedBack(id)<0) continue;
+    gotFeedback=true;
+    s.error=bus.Error; s.position=bus.ReadPos(-1);
+    s.loadRaw=bus.ReadLoad(-1);
+    s.currentRaw=bus.ReadCurrent(-1);
+    s.moving=bus.ReadMove(-1);
+    s.sampled=millis();
+    s.voltage=bus.ReadVoltage(-1)*0.1f; s.temperature=bus.ReadTemper(-1);
+    s.valid=s.error==0 && s.position>=0 && s.position<=4095 &&
+      s.voltage>=Config::SERVO_V_MIN && s.voltage<=Config::SERVO_V_MAX &&
+      s.temperature<Config::SERVO_TEMP_MAX;
+    if(s.valid) return true;
+    // A hardware alarm or high temperature requires an immediate stop.
+    if(s.error!=0 || s.temperature>=Config::SERVO_TEMP_MAX) break;
   }
-  if(received<0) {
-    hostConsole.printf("SERVO_FEEDBACK_FAIL id=%d after=3_attempts\n",Config::SERVO_IDS[i]);
-    if(active_) fault_=true;
-    return false;
+  if(gotFeedback) {
+    hostConsole.printf("SERVO_FEEDBACK_INVALID id=%d pos=%d V=%.2f C=%d error=0x%02X\n",
+      id,s.position,s.voltage,s.temperature,unsigned(s.error));
+  } else {
+    hostConsole.printf("SERVO_FEEDBACK_FAIL id=%d after=3_attempts\n",id);
   }
-  s.error=bus.Error; s.position=bus.ReadPos(-1);
-  s.sampled=millis();
-  s.voltage=bus.ReadVoltage(-1)*0.1f; s.temperature=bus.ReadTemper(-1);
-  s.valid=s.error==0 && s.position>=0 && s.position<=4095 &&
-    s.voltage>=Config::SERVO_V_MIN && s.voltage<=Config::SERVO_V_MAX &&
-    s.temperature<Config::SERVO_TEMP_MAX;
-  if(active_ && !s.valid) fault_=true;
-  return s.valid;
+  if(active_) fault_=true;
+  return false;
 }
 bool ServoBank::sendGoals(const int values[4],bool fastPosture) {
   u8 ids[4],acc[4]; s16 positions[4]; u16 speeds[4];
   for(int i=0;i<4;++i) {
     if(!taughtTargetAllowed(i,values[i])) return false;
     ids[i]=Config::SERVO_IDS[i]; positions[i]=values[i];
-    speeds[i]=fastPosture ? Config::POSTURE_SERVO_SPEED : Config::SERVO_SPEED; acc[i]=fastPosture ? Config::POSTURE_SERVO_ACC : Config::SERVO_ACC;
+    speeds[i]=fastPosture ? Config::POSTURE_SERVO_SPEED : Config::SERVO_SPEED;
+    acc[i]=fastPosture ? Config::POSTURE_SERVO_ACC : Config::SERVO_ACC;
   }
   bus.SyncWritePosEx(ids,4,positions,speeds,acc); uart.flush(); delay(3);
-  // Broadcast has no ACK: verify each target register before updating cache.
+  // Retry reads only; do not replace or advance an unconfirmed motion target.
   for(int i=0;i<4;++i) {
-    if(bus.readWord(ids[i],SMS_STS_GOAL_POSITION_L)!=values[i]) return false;
+    int actual=bus.readWord(ids[i],SMS_STS_GOAL_POSITION_L);
+    for(int retry=0;actual!=values[i] && retry<2;++retry) {
+      delay(4);
+      actual=bus.readWord(ids[i],SMS_STS_GOAL_POSITION_L);
+    }
+    if(actual!=values[i]) {
+      hostConsole.printf("SERVO_GOAL_READBACK_FAIL id=%d expected=%d read=%d\n",ids[i],values[i],actual);
+      if(active_) fault_=true;
+      return false;
+    }
   }
   for(int i=0;i<4;++i) goal[i]=values[i];
   return true;
@@ -72,7 +91,7 @@ bool ServoBank::positionInWindow(int i,int position) {
   if(teaching_[i].mask==3) {
     const int lo=std::min(teaching_[i].stand,teaching_[i].lie),hi=std::max(teaching_[i].stand,teaching_[i].lie);
     if(strcmp(teachingState(i),"VALID") || position<lo-4 || position>hi+4) {
-      hostConsole.printf("BLOCKED servo=%d: taught interval/state=%s; read limits/reteach first.\n",Config::SERVO_IDS[i],teachingState(i)); return false;
+      hostConsole.printf("BLOCKED servo=%d pos=%d taught_min=%d taught_max=%d tolerance=4 state=%s; support body and return within taught range; inspect teaching if range is wrong.\n",Config::SERVO_IDS[i],position,lo,hi,teachingState(i)); return false;
     }
   }
   return true;
@@ -228,6 +247,75 @@ void ServoBank::inspect(int i) {
     id,mode,torque,pos,hardwareGoal,limit,phase,offset);
   hostConsole.printf("SERVOINFO id=%d min=%d max=%d voltage_raw=%d temperature=%d status_raw=%d; -1 means read failed; READ ONLY\n",
     id,minAngle,maxAngle,voltage,temperature,statusByte);
+  const int positionP=bus.readByte(id,21);
+  const int positionI=bus.readByte(id,23);
+  const int positionD=bus.readByte(id,22);
+  const int integralLimit=bus.readByte(id,25);
+  const int startingTorque=bus.readByte(id,24);
+  const int deadbandCw=bus.readByte(id,SMS_STS_CW_DEAD);
+  const int deadbandCcw=bus.readByte(id,SMS_STS_CCW_DEAD);
+  hostConsole.printf("SERVOINFO id=%d position_p=%d position_i=%d position_d=%d integral_limit_raw=%d starting_torque_raw=%d deadband_cw=%d deadband_ccw=%d; -1 means read failed; READ ONLY\n",
+    id,positionP,positionI,positionD,integralLimit,startingTorque,deadbandCw,deadbandCcw);
+}
+void ServoBank::trialPositionPid(int index,int proportional,int integral,int limit) {
+  constexpr int positionP=21, positionI=23, integralLimit=25;
+  if(active_ || setupActive_ || taughtMoving_) {
+    hostConsole.println("SERVOITRIAL blocked: release servo torque before writing.");
+    return;
+  }
+  for(int servoId : Config::SERVO_IDS) {
+    if(bus.readByte(servoId,SMS_STS_TORQUE_ENABLE)!=0) {
+      hostConsole.println("SERVOITRIAL blocked: torque OFF not verified for all servos.");
+      return;
+    }
+  }
+  const int id=Config::SERVO_IDS[index];
+  struct Settings { int p,i,limit; };
+  const Settings target{proportional,integral,limit};
+  const auto same=[](const Settings& a,const Settings& b) {
+    return a.p==b.p && a.i==b.i && a.limit==b.limit;
+  };
+  const auto readSettings=[&](Settings& result) {
+    uint8_t values[5]={};
+    if(bus.Read(id,positionP,values,sizeof(values))!=sizeof(values) || bus.Error!=0) return false;
+    result={values[0],values[2],values[4]};
+    return values[1]==32 && values[3]==32;
+  };
+  Settings original{};
+  if(bus.readByte(id,SMS_STS_MODE)!=0 || bus.readByte(id,SMS_STS_LOCK)!=1 ||
+     !readSettings(original)) {
+    hostConsole.println("SERVOITRIAL blocked: unexpected mode, lock, or PID readback.");
+    return;
+  }
+  // Leave enough time for an EEPROM write before issuing another bus request.
+  const auto writeAndWait=[&](int address,int value) {
+    bus.writeByte(id,address,value);
+    uart.flush();
+    delay(70);
+  };
+  const auto apply=[&](const Settings& next,const Settings& previous) {
+    if(next.i==0 && next.i!=previous.i) writeAndWait(positionI,0);
+    if(next.limit!=previous.limit) writeAndWait(integralLimit,next.limit);
+    if(next.p!=previous.p) writeAndWait(positionP,next.p);
+    if(next.i!=0 && next.i!=previous.i) writeAndWait(positionI,next.i);
+  };
+  if(!same(original,target)) {
+    writeAndWait(SMS_STS_LOCK,0);
+    if(bus.readByte(id,SMS_STS_LOCK)!=0) {
+      writeAndWait(SMS_STS_LOCK,1);
+      hostConsole.println("SERVOITRIAL failed: EEPROM unlock not verified.");
+      return;
+    }
+    apply(target,original);
+    Settings check{};
+    if(!readSettings(check) || !same(check,target)) apply(original,target);
+    writeAndWait(SMS_STS_LOCK,1);
+  }
+  const bool locked=bus.readByte(id,SMS_STS_LOCK)==1;
+  Settings result{-1,-1,-1};
+  const bool verified=locked && readSettings(result) && same(result,target);
+  hostConsole.printf("SERVOITRIAL ok=%d id=%d position_p=%d position_i=%d integral_limit_raw=%d locked=%d\n",
+    verified,id,result.p,result.i,result.limit,locked);
 }
 bool ServoBank::midpointInPlace(int i,bool restoreOriginal) {
   if(i<0 || i>3 || active_ || setupActive_) {
